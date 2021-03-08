@@ -5,6 +5,7 @@ import Avatar from './AvatarDropdown';
 import HeaderDropdown from '../HeaderDropdown';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
+import { SelectLang } from 'umi';
 
 export type SiderTheme = 'light' | 'dark';
 
@@ -77,6 +78,7 @@ const GlobalHeaderRight: React.FC = () => {
           <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>
         </span>
       )}
+      <SelectLang />
     </Space>
   );
 };

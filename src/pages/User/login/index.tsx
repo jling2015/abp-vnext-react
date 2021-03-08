@@ -51,7 +51,7 @@ const Login: React.FC = () => {
       if (msg.access_token !==undefined ) {
         Store.setToken(msg.access_token)
         message.success('登录成功！');
-        refresh();
+        await refresh();
         goto();
         return;
       }

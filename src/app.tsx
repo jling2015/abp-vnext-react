@@ -34,11 +34,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   };
 };
 
-export const config : AbpConfig={
+export const config : AbpConfig = {
   request:{
     apis:{
       default:{
-        url:'https://localhost:44318',
+        url:'https://localhost:44308',
         rootNamespace:'BookStore'
       }
     }
