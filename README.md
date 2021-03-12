@@ -1,5 +1,6 @@
-# abp vnext react template
+# abp vnext react 前端模板
+## 如何使用
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+修改app.tsx中后端服务地址,然后执行npm start即可运行项目
 
 [docs](https://xiaoliang1314.github.io/)
