@@ -29,9 +29,6 @@ const IdentityRole: React.FC<IdentityRoleProps> = ({ }) => {
             编辑
           </Menu.Item>
           <Menu.Item>
-            声明
-          </Menu.Item>
-          <Menu.Item>
             权限
           </Menu.Item>
           <Menu.Item>

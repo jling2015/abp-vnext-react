@@ -29,21 +29,6 @@ const IdentityUser: React.FC<IdentityUserProps> = ({ }) => {
           {locale("AbpIdentity::Edit")}
           </Menu.Item>
           <Menu.Item>
-            声明
-          </Menu.Item>
-          <Menu.Item>
-            锁定
-          </Menu.Item>
-          <Menu.Item>
-            权限
-          </Menu.Item>
-          <Menu.Item>
-            设置密码
-          </Menu.Item>
-          <Menu.Item>
-            双因素验证
-          </Menu.Item>
-          <Menu.Item>
             删除
           </Menu.Item>
         </Menu>

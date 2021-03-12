@@ -26,7 +26,7 @@ export default (): React.ReactNode => {
           }}
         />
         <Typography.Text strong>
-        高级表格{' '}
+        高级1表格{' '}
           <a
             href="https://procomponents.ant.design/components/table"
             rel="noopener noreferrer"

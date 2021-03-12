@@ -29,6 +29,7 @@
       {
         path: '/admin/identity',
         name: 'identity',
+        access:"FeatureManagement.ManageHostFeatures",
         icon: 'smile',
         routes: [
           {
