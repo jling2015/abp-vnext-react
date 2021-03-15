@@ -1,77 +1,91 @@
 import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Dropdown, Menu } from 'antd';
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import type { ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { IdentityUserDto } from './data';
+import type { IdentityUserDto } from './data';
 import type { ProColumns } from '@ant-design/pro-table';
 import { getUsers } from './service';
-import { useLocalization } from 'umi'
+import { useLocalization } from 'umi';
 import { CaretDownOutlined, PlusOutlined, SettingFilled } from '@ant-design/icons';
+import CreateOrUpdateUser from './components/createOrUpdateUser';
 
-interface IdentityUserProps {
+const IdentityUser: React.FC = () => {
+  const locale = useLocalization();
+  const [selectedUser, setSelectedUser] = useState<IdentityUserDto>();
+  const [visible, setVisible] = useState<boolean>(false);
+  const tableActionRef = useRef<ActionType>();
 
-}
-
-
-const IdentityUser: React.FC<IdentityUserProps> = ({ }) => {
-
-  const locale= useLocalization();
+  const createUser = async () => {
+    await setSelectedUser(undefined);
+    await setVisible(true);
+  };
   const columns: ProColumns<IdentityUserDto>[] = [
     {
-      title: locale("AbpIdentity::Actions"),
+      title: locale('AbpIdentity::Actions'),
       width: 180,
       key: 'option',
       valueType: 'option',
       render: () => [
-      <Dropdown overlay={
-        <Menu>
-          <Menu.Item>
-          {locale("AbpIdentity::Edit")}
-          </Menu.Item>
-          <Menu.Item>
-            删除
-          </Menu.Item>
-        </Menu>
-      }
-      placement="bottomLeft">
-        <Button icon={<SettingFilled />} type="primary">{locale("AbpIdentity::Actions")}<CaretDownOutlined /></Button>
-      </Dropdown>,
+        <Dropdown
+          overlay={
+            <Menu>
+              <Menu.Item>{locale('AbpIdentity::Edit')}</Menu.Item>
+              <Menu.Item>删除</Menu.Item>
+            </Menu>
+          }
+          placement="bottomLeft"
+        >
+          <Button icon={<SettingFilled />} type="primary">
+            {locale('AbpIdentity::Actions')}
+            <CaretDownOutlined />
+          </Button>
+        </Dropdown>,
       ],
     },
     {
-      title: locale("AbpIdentity::UserName"),
+      title: locale('AbpIdentity::UserName'),
       key: 'userName',
-      dataIndex: 'userName'
+      dataIndex: 'userName',
     },
     {
-      title: locale("AbpIdentity::EmailAddress"),
+      title: locale('AbpIdentity::EmailAddress'),
       key: 'email',
-      dataIndex: 'email'
+      dataIndex: 'email',
     },
     {
-      title: locale("AbpIdentity::PhoneNumber"),
+      title: locale('AbpIdentity::PhoneNumber'),
       key: 'phoneNumber',
-      dataIndex: 'phoneNumber'
-    }
-  ]
+      dataIndex: 'phoneNumber',
+    },
+  ];
   return (
     <PageContainer
-      extra={<Button icon={<PlusOutlined />} type="primary">{locale("AbpIdentity::NewUser")}</Button>}>
+      extra={
+        <Button icon={<PlusOutlined />} onClick={() => createUser()} type="primary">
+          {locale('AbpIdentity::NewUser')}
+        </Button>
+      }
+    >
       <ProTable<IdentityUserDto>
         columns={columns}
-        request={async (params, sorter, filter) => {
-          const {items, totalCount} = await getUsers()
+        request={async () => {
+          const { items, totalCount } = await getUsers();
           return Promise.resolve({
-            data:items,
+            data: items,
             success: true,
-            total:totalCount
+            total: totalCount,
           });
         }}
-      >
-
-      </ProTable>
+      ></ProTable>
+      <CreateOrUpdateUser
+        identityUser={selectedUser}
+        onFinish={() => tableActionRef.current?.reload()}
+        visible={visible}
+        onCancel={() => setVisible(false)}
+      />
     </PageContainer>
-  )
-}
+  );
+};
 
 export default IdentityUser;
