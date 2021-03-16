@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
-import { history, useModel ,Store} from 'umi';
-import { outLogin } from '@/services/login';
+import { history, useModel, Store } from 'umi';
 import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
@@ -29,7 +28,7 @@ const loginOut = async () => {
 };
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { initialState } = useModel('@@initialState');
 
   const onMenuClick = useCallback(
     (event: {
@@ -46,7 +45,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       }
       history.push(`/account/${key}`);
     },
-    [initialState, setInitialState],
+    [initialState],
   );
 
   const loading = (
@@ -95,7 +94,12 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={"https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"} alt="avatar" />
+        <Avatar
+          size="small"
+          className={styles.avatar}
+          src={'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'}
+          alt="avatar"
+        />
         <span className={`${styles.name} anticon`}>{currentUser.name}</span>
       </span>
     </HeaderDropdown>

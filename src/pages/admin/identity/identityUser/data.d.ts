@@ -1,4 +1,7 @@
-import type { ExtensibleFullAuditedEntityDto } from '@potatoabp/types';
+import type {
+  ExtensibleFullAuditedEntityDto,
+  PagedAndSortedResultRequestDto,
+} from '@potatoabp/types';
 
 export interface IdentityUserDto extends ExtensibleFullAuditedEntityDto<string> {
   tenantId: string;
@@ -33,4 +36,7 @@ export interface UpdateUserDto {
   roleNames: string[];
   password: string;
   concurrencyStamp: string;
+}
+export interface GetUsersInput extends PagedAndSortedResultRequestDto {
+  filter: string;
 }

@@ -4,12 +4,14 @@ import { ProFormCheckbox } from '@ant-design/pro-form';
 import type { IdentityUserDto } from '../data';
 import { createUser, updateUser } from '../service';
 import { Modal } from 'antd';
+import type { IdentityRoleDto } from '../../identityRole/data';
 
 interface CreateOrUpdateUserProps {
   visible: boolean;
   identityUser?: IdentityUserDto;
   onCancel: () => void;
   onFinish: () => void;
+  roles: IdentityRoleDto[];
 }
 
 const CreateOrUpdateUser: React.FC<CreateOrUpdateUserProps> = ({
@@ -17,6 +19,7 @@ const CreateOrUpdateUser: React.FC<CreateOrUpdateUserProps> = ({
   visible,
   onCancel,
   onFinish,
+  roles = [],
 }) => {
   const handleSubmit = async (values: any) => {
     if (!identityUser) {
@@ -48,44 +51,42 @@ const CreateOrUpdateUser: React.FC<CreateOrUpdateUserProps> = ({
         );
       }}
     >
-      <StepsForm.StepForm title="基本信息">
+      <StepsForm.StepForm title="基本信息" initialValues={{ ...identityUser }}>
         <ProFormText
-          name="name"
+          name="userName"
           width="lg"
           label="用户名称"
           placeholder="请输入名称"
           rules={[{ required: true }]}
         />
-        <ProFormText
-          name="name"
-          width="lg"
-          label="密码"
-          fieldProps={{ type: 'password' }}
-          placeholder="请输入名称"
-          rules={[{ required: true }]}
-        />
+        {identityUser === undefined ? (
+          <ProFormText
+            name="password"
+            width="lg"
+            label="密码"
+            fieldProps={{ type: 'password' }}
+            placeholder="请输入名称"
+            rules={[{ required: true }]}
+          />
+        ) : null}
         <ProFormText name="name" width="lg" label="名" />
-        <ProFormText name="name" width="lg" label="姓" />
+        <ProFormText name="surname" width="lg" label="姓" />
         <ProFormText
-          name="name"
+          name="email"
           width="lg"
           label="邮箱地址"
           fieldProps={{ type: 'email' }}
           placeholder="请输入名称"
           rules={[{ required: true }]}
         />
-        <ProFormText name="name" width="lg" label="手机号" fieldProps={{ type: 'number' }} />
-        <ProFormCheckbox.Group
-          name="checkbox"
-          layout="vertical"
-          options={['登录失败,账户被锁定']}
-        />
+        <ProFormText name="phoneNumber" width="lg" label="手机号" />
+        <ProFormCheckbox name="lockoutEnabled">登录失败,账户被锁定</ProFormCheckbox>
       </StepsForm.StepForm>
-      <StepsForm.StepForm title="角色">
+      <StepsForm.StepForm title="角色" initialValues={{ ...identityUser }}>
         <ProFormCheckbox.Group
-          name="checkbox"
-          layout="vertical"
-          options={['登录失败,账户被锁定']}
+          name="roleNames"
+          layout="horizontal"
+          options={roles.map((t) => t.name)}
         />
       </StepsForm.StepForm>
     </StepsForm>

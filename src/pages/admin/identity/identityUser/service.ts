@@ -1,9 +1,11 @@
 import { request } from 'umi';
 import type { PagedResultDto } from '@potatoabp/types';
-import type { CreateUserDto, IdentityUserDto, UpdateUserDto } from './data.d';
+import type { CreateUserDto, GetUsersInput, IdentityUserDto, UpdateUserDto } from './data.d';
 
-export async function getUsers() {
-  return request<PagedResultDto<IdentityUserDto>>('/api/identity/users');
+export async function getUsers(params: GetUsersInput) {
+  return request<PagedResultDto<IdentityUserDto>>('/api/identity/users', {
+    params,
+  });
 }
 
 export async function createUser(data: CreateUserDto) {

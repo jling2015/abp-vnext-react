@@ -9,7 +9,7 @@ export type LoginParamsType = {
 };
 
 export async function fakeAccountLogin(params: LoginParamsType) {
-  var urlencoded = new URLSearchParams();
+  const urlencoded = new URLSearchParams();
   urlencoded.append('password', params.password);
   urlencoded.append('username', params.username);
   urlencoded.append('grant_type', 'password');
@@ -19,9 +19,9 @@ export async function fakeAccountLogin(params: LoginParamsType) {
   return request('/connect/token', {
     method: 'POST',
     data: urlencoded,
-    headers:{
-      'Content-Type':'application/x-www-form-urlencoded'
-    }
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
   });
 }
 

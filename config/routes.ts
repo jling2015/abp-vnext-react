@@ -29,7 +29,7 @@
       {
         path: '/admin/identity',
         name: 'identity',
-        access:"FeatureManagement.ManageHostFeatures",
+        access: 'FeatureManagement.ManageHostFeatures',
         icon: 'smile',
         routes: [
           {
@@ -43,14 +43,8 @@
             name: 'identityRole',
             icon: 'smile',
             component: './admin/identity/identityRole',
-          }
+          },
         ],
-      },
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
       },
     ],
   },

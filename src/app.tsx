@@ -5,7 +5,7 @@ import { history } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { getApplicationConfiguration } from './services/applicationConfiguration';
-import { AbpConfig,ApplicationConfiguration } from '@potatoabp/types';
+import type { AbpConfig, ApplicationConfiguration } from '@potatoabp/types';
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
   loading: <PageLoading />,
@@ -13,7 +13,7 @@ export const initialStateConfig = {
 
 export async function getInitialState(): Promise<ApplicationConfiguration> {
   const applizationConfiguration = await getApplicationConfiguration();
-  return applizationConfiguration
+  return applizationConfiguration;
 }
 
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
@@ -34,13 +34,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   };
 };
 
-export const config : AbpConfig = {
-  request:{
-    apis:{
-      default:{
-        url:'https://localhost:44308',
-        rootNamespace:'BookStore'
-      }
-    }
-  }
-}
+export const config: AbpConfig = {
+  request: {
+    apis: {
+      default: {
+        url: 'https://localhost:44308',
+        rootNamespace: 'BookStore',
+      },
+    },
+  },
+};
