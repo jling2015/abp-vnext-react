@@ -1,6 +1,7 @@
-# abp vnext react 前端模板
-## 如何使用
+<h1 align="center">Welcome to Abp Vnext React Template 👋</h1>
 
-修改app.tsx中后端服务地址,然后执行npm start即可运行项目
+## How to use
+
+To run the project, change the address of the back-end service in app.tsx and execute npm start
 
 
