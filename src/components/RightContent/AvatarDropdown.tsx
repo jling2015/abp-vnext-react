@@ -28,7 +28,7 @@ const loginOut = async () => {
 };
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
-  const { initialState } = useModel('@@initialState');
+  const { abpConfigration } = useModel('abpConfigration');
 
   const onMenuClick = useCallback(
     (event: {
@@ -38,14 +38,14 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       domEvent: React.MouseEvent<HTMLElement>;
     }) => {
       const { key } = event;
-      if (key === 'logout' && initialState) {
+      if (key === 'logout' && abpConfigration) {
         Store.setToken('');
         loginOut();
         return;
       }
       history.push(`/account/${key}`);
     },
-    [initialState],
+    [abpConfigration],
   );
 
   const loading = (
@@ -60,11 +60,11 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     </span>
   );
 
-  if (!initialState) {
+  if (!abpConfigration) {
     return loading;
   }
 
-  const { currentUser } = initialState;
+  const { currentUser } = abpConfigration;
   if (!currentUser || !currentUser.userName) {
     return loading;
   }

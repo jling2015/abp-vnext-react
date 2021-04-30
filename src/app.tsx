@@ -1,22 +1,11 @@
 import React from 'react';
-import { PageLoading } from '@ant-design/pro-layout';
 import type { RunTimeLayoutConfig } from 'umi';
 import { history } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { getApplicationConfiguration } from './services/applicationConfiguration';
-import type { AbpConfig, ApplicationConfiguration } from '@potatoabp/types';
-/** 获取用户信息比较慢的时候会展示一个 loading */
-export const initialStateConfig = {
-  loading: <PageLoading />,
-};
+import type { AbpConfig } from '@potatoabp/types';
 
-export async function getInitialState(): Promise<ApplicationConfiguration> {
-  const applizationConfiguration = await getApplicationConfiguration();
-  return applizationConfiguration;
-}
-
-export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+export const layout: RunTimeLayoutConfig = ({ abpConfigration }) => {
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
@@ -24,7 +13,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser.isAuthenticated && location.pathname !== '/user/login') {
+      if (!abpConfigration?.currentUser.isAuthenticated && location.pathname !== '/user/login') {
         history.push('/user/login');
       }
     },
@@ -38,7 +27,7 @@ export const config: AbpConfig = {
   request: {
     apis: {
       default: {
-        url: 'https://localhost:44308',
+        url: 'https://localhost:44370',
         rootNamespace: 'BookStore',
       },
     },

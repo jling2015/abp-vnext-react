@@ -42,7 +42,7 @@ const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
   const [type, setType] = useState<string>('account');
-  const { refresh} = useModel("@@initialState");
+  const { refresh} = useModel("abpConfigration");
   const handleSubmit = async (values: LoginParamsType) => {
     setSubmitting(true);
     try {
