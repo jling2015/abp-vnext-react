@@ -11,11 +11,11 @@ export const layout: RunTimeLayoutConfig = ({ abpConfigration }) => {
     disableContentMargin: false,
     footerRender: () => <Footer />,
     onPageChange: () => {
-      const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!abpConfigration?.currentUser.isAuthenticated && location.pathname !== '/user/login') {
-        history.push('/user/login');
-      }
+      // const { location } = history;
+      // // 如果没有登录，重定向到 login
+      // if (!abpConfigration?.currentUser.isAuthenticated && location.pathname !== '/user/login') {
+      //   history.push('/user/login');
+      // }
     },
     menuHeaderRender: undefined,
     // 自定义 403 页面
