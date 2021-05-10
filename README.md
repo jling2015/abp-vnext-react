@@ -76,8 +76,18 @@ This will automatically open http://localhost:8000.
 ## Hooks
 ### localization
 - useLocalization
+```javascript
+import { useLocalization } from 'umi';
+const locale = useLocalization();
+locale('AbpIdentity::Permissions')
+```
 - useResource
 ### permission
+```javascript
+import { usePermission } from 'umi';
+const isGranted = usePermission();
+isGranted('abp.user.create')
+```
 - usePermission
 ### settings(TODO)
 
@@ -94,7 +104,34 @@ export default [
     component: './User/login',
   }]
 ```
+## Request
+### config 
+in the app.ts
+```javascript
+export const config: AbpConfig = {
+  request: {
+    apis: {
+      default: {
+        url: 'https://localhost:44355',
+        rootNamespace: 'BookStore',
+      },
+    },
+    TenantManagement:{
+       url: 'https://localhost:44370',
+       rootNamespace: 'TenantManagement',
+    }
+  }
+};
+```
+### Use
+```javascript
+import { request } from 'umi';
 
+export async function outLogin() {
+  return request('/api/login/outLogin',{apiName:'TenantManagement'});
+}
+
+```
 ## TODO
 - Module management and addition
 - generate proxy
