@@ -8,12 +8,68 @@
 ## Getting Started
 
 ```bash
-# Pull the code
-$ git clone https://github.com/potatoabp/abp-vnext-react
+# install the cli
+npm i @potatoabp/cli -g
 ```
-Modify the app.ts back-end service address under src
-
+then
 ```bash
-# start project
-$ npm start
+# execute in an empty folder
+potato
 ```
+choose application
+```bash
+? Select the boilerplate type (Use arrow keys)
+> application     - Create project with a abp vnext react front-end template
+```
+template will be installed automatically
+
+### Development
+
+Install Dependencies
+```bash
+$ npm install
+```
+first update the service address in src/app.ts
+```javascript
+// ... others
+export const config: AbpConfig = {
+  request: {
+    apis: {
+      default: {
+        url: 'https://localhost:44355',
+        rootNamespace: 'BookStore',
+      },
+    },
+  },
+  oauthConfig: {
+    scope: '',
+    clientId: '',
+  },
+};
+```
+first update the oauthconfig  in src/services/login.ts(this is temporary)
+```javascript
+// ... others
+export async function fakeAccountLogin(params: LoginParamsType) {
+  const urlencoded = new URLSearchParams();
+  urlencoded.append('password', params.password);
+  urlencoded.append('username', params.username);
+  urlencoded.append('grant_type', 'password');
+  urlencoded.append('client_id', 'BookStore_App');
+  urlencoded.append('client_secret', '1q2w3e*');
+  urlencoded.append('scope', 'BookStore');
+  return request('/connect/token', {
+    method: 'POST',
+    data: urlencoded,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
+}
+
+```
+then
+```bash
+$ npm install
+```
+This will automatically open http://localhost:8000.
