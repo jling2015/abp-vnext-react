@@ -126,7 +126,7 @@ export const config: AbpConfig = {
   }
 };
 ```
-### Use
+### How to Use
 ```javascript
 import { request } from 'umi';
 
@@ -136,6 +136,6 @@ export async function outLogin() {
 
 ```
 ## TODO
-- Module management and addition
+- module management and addition
 - generate proxy
 - others...
