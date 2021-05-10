@@ -8,14 +8,10 @@ const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
   hash: true,
-  presets:['@potatoabp/preset-abp'],
+  presets: ['@potatoabp/preset-abp'],
   antd: {},
   dva: {
     hmr: true,
-  },
-  layout: {
-    siderWidth: 208,
-    ...defaultSettings,
   },
   dynamicImport: {
     loading: '@ant-design/pro-layout/es/PageLoading',

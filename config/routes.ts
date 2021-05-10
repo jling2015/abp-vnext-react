@@ -1,35 +1,26 @@
 ﻿export default [
   {
-    path: '/user',
-    layout: false,
-    routes: [
-      {
-        path: '/user',
-        routes: [
-          {
-            name: 'login',
-            path: '/user/login',
-            component: './User/login',
-          },
-        ],
-      },
-    ],
+    name: 'account',
+    layout: 'account',
+    path: '/account/login',
+    component: './User/login',
   },
   {
     path: '/welcome',
     name: 'welcome',
+    layout: 'application',
     icon: 'smile',
     component: './Welcome',
   },
   {
     path: '/admin',
     name: 'admin',
+    layout: 'application',
     icon: 'crown',
     routes: [
       {
         path: '/admin/identity',
         name: 'identity',
-        access: 'FeatureManagement.ManageHostFeatures',
         icon: 'smile',
         routes: [
           {
