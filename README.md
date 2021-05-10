@@ -73,3 +73,29 @@ then
 $ npm install
 ```
 This will automatically open http://localhost:8000.
+## Hooks
+### localization
+- useLocalization
+- useResource
+### permission
+- usePermission
+### settings(TODO)
+
+## Routes
+Built-in Account and Application layout pages 
+See this config/routes.ts file to learn more
+```javascript
+export default [
+  {
+    name: 'account',
+    // set layout account or application
+    layout: 'account',
+    path: '/account/login',
+    component: './User/login',
+  }]
+```
+
+## TODO
+- Module management and addition
+- generate proxy
+- others...
