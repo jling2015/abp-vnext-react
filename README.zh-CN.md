@@ -1,46 +1,46 @@
-English | [简体中文](./README.zh-CN.md)
+[English](./README.md) | 简体中文
 
 <h1 align="center"> Abp Vnext React Template</h1>
 <div align="center">
- An out-of-box UI solution for abp vnext as a React boilerplate.
+ 一个开箱即用的 abp vnext  react 前端模板.
 </div>
 
-## Features
+## 功能
 
-- 📦 **Out of the Box**, Based on Umi and Antd Pro，Just configure the back-end service address to get started。It also provides a set of integrated plug-ins for ABP,Realize the seamless docking with ABP。
+- 📦 **Out of the Box**, 基于 Umi 和 Antd Pro，只需配置后端服务地址就可以开始了。同时还提供了一组 ABP 集成插件，实现了与 ABP 的无缝对接。
 
-## Getting Started
+## 快速开始
 
 ```bash
-# install the cli
+# 安装cli
 npm i @potatoabp/cli -g
 ```
 
-then
+然后
 
 ```bash
-# execute in an empty folder
+# 在一个空文件夹中执行
 potato
 ```
 
-choose application
+选择应用程序
 
 ```bash
 ? Select the boilerplate type (Use arrow keys)
 > application     - Create project with a abp vnext react front-end template
 ```
 
-template will be installed automatically
+模板将自动安装
 
-### Development
+### 开发
 
-Install Dependencies
+安装依赖
 
 ```bash
 $ npm install
 ```
 
-first update the service address in src/app.ts
+首先更新 src/app.ts 中的服务地址
 
 ```javascript
 // ... others
@@ -60,7 +60,7 @@ export const config: AbpConfig = {
 };
 ```
 
-second update the oauthconfig in src/services/login.ts(this is temporary)
+然后更新 src/services/login 中的 oauthconfig。ts(这是暂时的)
 
 ```javascript
 // ... others
@@ -82,7 +82,7 @@ export async function fakeAccountLogin(params: LoginParamsType) {
 }
 ```
 
-then
+然后
 
 ```bash
 $ npm start
@@ -92,7 +92,7 @@ This will automatically open http://localhost:8000.
 
 ## Hooks
 
-### localization
+### 国际化
 
 - useLocalization
 
@@ -104,7 +104,7 @@ locale('AbpIdentity::Permissions');
 
 - useResource
 
-### permission
+### 权限
 
 ```javascript
 import { usePermission } from 'umi';
@@ -116,25 +116,25 @@ isGranted('abp.user.create');
 
 ### settings(TODO)
 
-## Routes
+## 路由
 
-Built-in Account and Application layout pages See this config/routes.ts file to learn more
+内置的帐户和应用程序布局页面查看 config/routes.ts 了解更多
 
 ```javascript
 export default [
   {
     name: 'account',
-    // set layout account or application
-    layout: 'account',
+    // 设置layout
+    layout: 'account', //or application
     path: '/account/login',
     component: './User/login',
   },
 ];
 ```
 
-## Request
+## 请求
 
-### config
+### 配置
 
 in the app.ts
 
@@ -155,7 +155,7 @@ export const config: AbpConfig = {
 };
 ```
 
-### How to Use
+### 使用
 
 ```javascript
 import { request } from 'umi';
@@ -167,6 +167,6 @@ export async function outLogin() {
 
 ## TODO
 
-- module management and addition
-- generate proxy
-- others...
+- 模块管理系统
+- 前端请求代理文件生成
+- 其他内容...
